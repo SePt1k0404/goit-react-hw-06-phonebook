@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/actions';
+import { filterContacts } from 'redux/filterSlice';
 import { InputFilterWrapper, InputFilter } from './ContactsFilter.styled';
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
-  const handlerChange = evt => dispatch(filterContacts(evt.target.value));
+  const handlerChange = evt => dispatch(filterContacts(evt.target?.value));
   return (
     <>
       <InputFilterWrapper>
