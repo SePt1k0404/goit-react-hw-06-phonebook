@@ -20,6 +20,7 @@ export const FormSubmitBtn = styled.button`
   border: none;
   border-radius: 20px;
   background-color: #00c410;
+  cursor: pointer;
 `;
 
 export const FormInputName = styled.input`

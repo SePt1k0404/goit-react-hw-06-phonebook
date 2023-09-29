@@ -3,13 +3,15 @@ import { PhoneBookForm } from './PhoneBookForm/PhoneBookForm';
 import { Contacts } from './Contacts/Contacts';
 import { ContactsFilter } from './Contacts/ContactsFilter';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
 
 export const App = () => {
   const CONTACTS_KEY = 'contacts';
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem(CONTACTS_KEY)) ?? []
   );
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem(CONTACTS_KEY) !== null) {
@@ -21,34 +23,23 @@ export const App = () => {
     localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
   }, [contacts]);
 
-  const handlerChange = evt => {
-    setFilter(evt.target.value);
-  };
+  // const handlerChange = evt => {
+  //   setFilter(evt.target.value);
+  // };
 
-  const changeInfo = info => {
-    if (contacts.some(el => el.name === info.name)) {
-      alert(`${info.name} is already in contacts.`);
-    } else {
-      setContacts(prevState => [...prevState, info]);
-    }
-  };
+  const filter = useSelector(getFilter);
+  const contactsList = useSelector(getContacts);
 
-  const deleteContact = evt => {
-    setContacts(prevState =>
-      prevState.filter(el => el.name !== evt.target.value)
-    );
-  };
-
-  const visibleName = contacts.filter(el =>
+  const visibleName = contactsList?.filter(el =>
     el.name.toLowerCase().includes(filter.toLowerCase())
   );
   return (
     <>
       <h2 style={{ marginLeft: '20px' }}>Phonebook</h2>
-      <PhoneBookForm onChangeInfo={changeInfo} />
+      <PhoneBookForm />
       <h2 style={{ marginLeft: '20px' }}>Contacts</h2>
-      <ContactsFilter filter={filter} handlerChange={handlerChange} />
-      <Contacts contacts={visibleName} deleteContact={deleteContact} />
+      <ContactsFilter />
+      <Contacts contacts={visibleName} />
     </>
   );
 };
