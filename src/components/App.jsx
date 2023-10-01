@@ -4,12 +4,32 @@ import { ContactsFilter } from './Contacts/ContactsFilter';
 
 export const App = () => {
   return (
-    <>
-      <h2 style={{ marginLeft: '20px' }}>Phonebook</h2>
+    <div style={{ width: '100%', marginTop: '70px' }}>
+      <h2
+        style={{
+          display: 'block',
+          width: '180px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          textAlign: 'center',
+        }}
+      >
+        Phonebook
+      </h2>
       <PhoneBookForm />
-      <h2 style={{ marginLeft: '20px' }}>Contacts</h2>
+      <h2
+        style={{
+          display: 'block',
+          width: '180px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          textAlign: 'center',
+        }}
+      >
+        Contacts
+      </h2>
       <ContactsFilter />
       <Contacts />
-    </>
+    </div>
   );
 };

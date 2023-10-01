@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const ContactsList = styled.ul`
   margin: 0;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px;
   display: flex;
   gap: 10px;
